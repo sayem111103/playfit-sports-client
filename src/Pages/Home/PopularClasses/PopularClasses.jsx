@@ -1,6 +1,6 @@
 import useClasses from "../../../Hooks/useClasses";
+import ClassCard from "../../../components/ClassCard";
 import Container from "../../../components/Container";
-import Card from "../../../components/card";
 import SectionHeader from "../../../components/sectionHeader";
 
 const PopularClasses = () => {
@@ -11,7 +11,7 @@ const PopularClasses = () => {
             <Container>
                 <SectionHeader name={'Popular classes'}></SectionHeader>
                 <div className="grid grid-cols-3 pt-6">
-                    {popular?.map(pd => <Card key={pd._id} data={pd}></Card>)}
+                    {popular?.map(pd => <ClassCard key={pd._id} data={pd}></ClassCard>)}
                 </div>
             </Container>
         </section>

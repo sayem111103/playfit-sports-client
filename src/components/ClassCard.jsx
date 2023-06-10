@@ -1,6 +1,6 @@
 import LazyLoad from "react-lazy-load";
 
-const Card = ({data}) => {
+const ClassCard = ({data}) => {
     return (
         <>
             <div className="card w-96 glass">
@@ -19,4 +19,4 @@ const Card = ({data}) => {
     );
 };
 
-export default Card;
+export default ClassCard;
