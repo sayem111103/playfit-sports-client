@@ -11,7 +11,7 @@ const ClassCard = ({data}) => {
                     <p className="text-md font-light"><span className="text-lg font-medium">Total Seats:</span> {data?.totalSeat   }</p>
                     <p className="text-md font-light"><span className="text-lg font-medium">Available Seats:</span> {data?.availableSeats}</p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Learn now!</button>
+                        <button className="btn btn-primary">Enroll now!</button>
                     </div>
                 </div>
             </div>

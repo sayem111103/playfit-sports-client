@@ -6,6 +6,8 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import Allinstructors from "../Pages/Allinstructors/Allinstructors";
 import AllClasses from "../Pages/AllClasses/AllClasses";
+import DetailPage from "../Pages/DetailPage/DetailPage";
+import axios from "axios";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +34,11 @@ const router = createBrowserRouter([
             {
                 path:'classes',
                 element:<AllClasses></AllClasses>
+            },
+            {
+                path:'detailpage/:id',
+                element:<DetailPage></DetailPage>,
+                loader:({params})=> axios.get(`http://localhost:5000/instructors/${params.id}`)
             }
         ]
     }
