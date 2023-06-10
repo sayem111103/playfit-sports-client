@@ -1,9 +1,9 @@
-const sectionHeader = ({name}) => {
+const SectionHeader = ({name}) => {
     return (
-        <h3 className="text-xl font-bold">   
+        <h3 className="text-2xl uppercase font-bold text-center">   
         {name}         
         </h3>
     );
 };
 
-export default sectionHeader;
+export default SectionHeader;

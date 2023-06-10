@@ -5,10 +5,11 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import Auth from './Auth/Auth';
 
 const queryClient= new QueryClient();
 const App = () => {
-  return <QueryClientProvider client={queryClient}><RouterProvider router={router}></RouterProvider></QueryClientProvider>
+  return <QueryClientProvider client={queryClient}><Auth><RouterProvider router={router}></RouterProvider></Auth></QueryClientProvider>
 }
 
 export default App
