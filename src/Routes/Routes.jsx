@@ -13,6 +13,7 @@ import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import InstructorHome from "../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
 import StudentHome from "../Pages/Dashboard/Student/StudentHome/StudentHome";
+import Private from "./Private/Private";
 
 const isAdmin = true
 const isInstructor = false
@@ -52,14 +53,14 @@ const router = createBrowserRouter([
     },
     {
         path:'/',
-        element:<DashboardLayout></DashboardLayout>,
+        element:<Private><DashboardLayout></DashboardLayout></Private>,
         children:[
             {
                 path:'dashboard',
                 element: isAdmin?<AdminHome></AdminHome>:isInstructor?<InstructorHome></InstructorHome>:<StudentHome></StudentHome>
             },
             {
-                path:'admin/manageusers',
+                path:'manageusers',
                 element:<ManageUsers></ManageUsers>
             }
         ]

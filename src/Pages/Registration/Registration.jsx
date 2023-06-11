@@ -3,8 +3,10 @@ import LoginAndRegistrationForm from "../../components/LoginAndRegistrationForm/
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
 
 const Registration = () => {
+    const [baseUrl] = useAxios()
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
@@ -21,7 +23,14 @@ const Registration = () => {
         emailPassRegistration(data.email, data.password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                baseUrl.post('/user', {
+                    name: data.name,
+                    email: data.email,
+                    photo: data.photo,
+                    gender: data.gender,
+                    password: data.password
+                })
+                    .then(res => { })
                 navigate(from, { replace: true })
             })
             .catch((error) => {

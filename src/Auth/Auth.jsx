@@ -1,12 +1,14 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
 import app from '../Firebase/firbase.config';
+import useAxios from '../Hooks/useAxios';
 
 export const authContext = createContext(null);
 const auth = getAuth(app);
 const Auth = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(true)
+    const [baseUrl] = useAxios()
 
     const emailPassRegistration = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -30,7 +32,19 @@ const Auth = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setUser(user)
-            setLoader(false)
+            if (user) {
+                baseUrl.post('/jwt', { email: user.email })
+                    .then(res => {
+                        const token = res.data.token;
+                        localStorage.setItem('token', token)
+                        setLoader(false)
+                    })
+            }
+
+            else {
+                localStorage.removeItem('token')
+            }
+
         })
         return () => {
             return unsubscribe()

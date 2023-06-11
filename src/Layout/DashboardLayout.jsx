@@ -7,13 +7,13 @@ import { MdLibraryBooks } from 'react-icons/md';
 const DashboardLayout = () => {
     const isAdmin = true;
     const isInstructor = false;
-    const dashboardItem = <>{isAdmin ? <><li><Link to='/home' className="text-black"><FaHome className="text-black"></FaHome>Admin Home</Link></li>
-        <li><Link to='/manageusers' className="text-black"><MdPeopleAlt className='text-black'></MdPeopleAlt>Manage Users</Link></li>
+    const dashboardItem = <>{isAdmin ? <><li><Link to='dashboard' className="text-black"><FaHome className="text-black"></FaHome>Admin Home</Link></li>
+        <li><Link to='manageusers' className="text-black"><MdPeopleAlt className='text-black'></MdPeopleAlt>Manage Users</Link></li>
         <li><Link to='manageclasses' className="text-black"><ImBooks className='text-black'></ImBooks>Manage Classes</Link></li>
         </>
         :
         <>{isInstructor ? <>
-            <li><Link to='/home' className="text-black"><FaHome className="text-black"></FaHome>Instructor Home</Link></li>
+            <li><Link to='dashboard' className="text-black"><FaHome className="text-black"></FaHome>Instructor Home</Link></li>
             <li><Link to='addaclass' className="text-black"><MdLibraryBooks className='text-black'></MdLibraryBooks>Add a Class</Link></li>
             <li><Link to='myclasses' className="text-black"><MdLibraryBooks className='text-black'></MdLibraryBooks>My Classes</Link></li>
             </>
