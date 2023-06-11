@@ -11,7 +11,7 @@ const Private = ({ children }) => {
                 autoplay
                 loop
                 src="https://assets10.lottiefiles.com/packages/lf20_lz5rbiit.json"
-                style={{ height: '200px', width: '200px' }}
+                style={{ height: '100px', width: '100px' }}
             >
             </Player>
         </div>

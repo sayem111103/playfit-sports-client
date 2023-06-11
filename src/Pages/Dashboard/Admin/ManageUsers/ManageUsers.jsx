@@ -1,59 +1,72 @@
+import Swal from "sweetalert2";
+import useAxios from "../../../../Hooks/useAxios";
 import useUser from "../../../../Hooks/useUser";
 
 const ManageUsers = () => {
-    const [users] = useUser()
+    const [users, refetch] = useUser();
+    const [baseUrl] = useAxios();
+    const handleRole = (id, name, data) => {
+        baseUrl.patch(`user/${id}`, { name: name })
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    if (name === 'admin') {
+                        refetch()
+                        Swal.fire(
+                            '',
+                            `${data.name} is an admin now!`,
+                            'success'
+                        )
+                    }
+                    if (name === 'instructor') {
+                        refetch()
+                        Swal.fire(
+                            '',
+                            `${data.name} is an instructor now!`,
+                            'success'
+                        )
+                    }
+                }
+            })
+    }
+
     return (
         <div className="w-9/12">
+            <h3 className='text-center mb-6 font-extrabold text-4xl uppercase'>Manage User</h3>
             <div className="overflow-x-auto">
-                <table className="table">
+                <table className="table rounded-t-xl overflow-hidden">
                     {/* head */}
-                    <thead>
-                        <tr>
-                            <th>
-                            </th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                    <thead className="bg-slate-100">
+                        <tr className="border-0">
                             <th></th>
+                            <th className="text-sm">Name</th>
+                            <th className="text-sm">Email</th>
+                            <th className="text-center text-sm">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row */}
-                        {users.map(ud => <tr>
-                            <th>
-                            </th>
+                        {users?.map((ud, index) => <tr className="border-b-slate-200" key={ud._id}>
+                            <td>{index + 1}.</td>
                             <td>
                                 <div className="flex items-center space-x-3">
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle w-12 h-12">
-                                            <img src="/tailwind-css-component-profile-4@56w.png" alt="Avatar Tailwind CSS Component" />
-                                        </div>
-                                    </div>
                                     <div>
-                                        <div className="font-bold">Marjy Ferencz</div>
-                                        <div className="text-sm opacity-50">Russia</div>
+                                        <div className="font-bold">{ud.name}</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                Rowe-Schoen
-                                <br />
-                                <span className="badge badge-ghost badge-sm">Office Assistant I</span>
+                                {ud.email}
                             </td>
-                            <td>Crimson</td>
-                            <th>
-                                <button className="btn btn-ghost btn-xs">details</button>
+                            <th className="text-center">
+                                <button onClick={() => handleRole(ud._id, 'admin',ud)} disabled={ud?.role === 'admin' ? true : false} className="btn btn-primary mr-3 text-xs btn-sm">admin</button>
+                                <button onClick={() => handleRole(ud._id, 'instructor',ud)} disabled={ud?.role === 'instructor' ? true : false} className="btn btn-primary text-xs btn-sm">instructor</button>
                             </th>
                         </tr>)}
                     </tbody>
                     {/* foot */}
                     <tfoot>
-                        <tr>
-                            <th></th>
-                            <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
-                            <th></th>
+                        <tr className="bg-slate-100">
+                            <th colSpan={5}></th>
                         </tr>
                     </tfoot>
 

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
+import Swal from "sweetalert2";
 
 const Registration = () => {
     const [baseUrl] = useAxios()
@@ -31,9 +32,14 @@ const Registration = () => {
                     photo: data.photo,
                     gender: data.gender,
                     password: data.password,
-                    role: 'user'
+                    role: 'student'
                 })
                     .then(res => { })
+                    Swal.fire(
+                        '',
+                        'Successfully Login',
+                        'success'
+                      )
                 navigate(from, { replace: true })
             })
             .catch((error) => {

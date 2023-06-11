@@ -3,6 +3,7 @@ import LoginAndRegistrationForm from "../../components/LoginAndRegistrationForm/
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const location = useLocation();
@@ -19,7 +20,11 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(user);
+                Swal.fire(
+                    '',
+                    'Successfully Login',
+                    'success'
+                  )
                 navigate(from, { replace: true })
             })
             .catch((error) => {
