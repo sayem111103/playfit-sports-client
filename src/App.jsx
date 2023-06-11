@@ -1,11 +1,11 @@
 import { RouterProvider } from 'react-router-dom'
 import './App.css'
-import router from './Routes/Routes'
 import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
 import Auth from './Auth/Auth';
+import router from './Routes/Routes';
 
 const queryClient= new QueryClient();
 const App = () => {

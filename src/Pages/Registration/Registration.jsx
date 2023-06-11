@@ -10,7 +10,7 @@ const Registration = () => {
     const location = useLocation();
     const navigate = useNavigate();
     let from = location.state?.from?.pathname || "/";
-    const { emailPassRegistration, user } = useAuth()
+    const { emailPassRegistration, user, updateProf } = useAuth()
     const [error, setError] = useState('')
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
@@ -23,12 +23,15 @@ const Registration = () => {
         emailPassRegistration(data.email, data.password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                updateProf(data.name, data.img)
+
                 baseUrl.post('/user', {
                     name: data.name,
                     email: data.email,
                     photo: data.photo,
                     gender: data.gender,
-                    password: data.password
+                    password: data.password,
+                    role: 'user'
                 })
                     .then(res => { })
                 navigate(from, { replace: true })

@@ -9,12 +9,10 @@ import AllClasses from "../Pages/AllClasses/AllClasses";
 import DetailPage from "../Pages/DetailPage/DetailPage";
 import axios from "axios";
 import DashboardLayout from "../Layout/DashboardLayout";
-import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
-import InstructorHome from "../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
-import StudentHome from "../Pages/Dashboard/Student/StudentHome/StudentHome";
 import Private from "./Private/Private";
 import AdminRoute from "./AdminRoute/AdminRoute";
+import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 
 const router = createBrowserRouter([
     {
@@ -50,20 +48,12 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: 'dashboard',
+        path: '/',
         element: <Private><DashboardLayout></DashboardLayout></Private>,
         children: [
             {
-                path: 'adminhome',
-                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
-            },
-            {
-                path: 'instructorhome',
-                element: <InstructorHome></InstructorHome>
-            },
-            {
-                path: 'studenthome',
-                element: <StudentHome></StudentHome>
+                path: 'dashboard',
+                element: <Private><DashboardHome></DashboardHome></Private>
             },
             {
                 path: 'manageusers',

@@ -1,10 +1,11 @@
 import { Player } from "@lottiefiles/react-lottie-player";
 import useAdmin from "../../Hooks/useAdmin";
 import useAuth from "../../Hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
 const AdminRoute = ({ children }) => {
     const [isAdmin, isAdminLoading] = useAdmin();
-    const { user, loader } = useAuth();
+    const { user, loader,logOut } = useAuth();
     if (loader || isAdminLoading) {
         return <div className="h-[100vh] flex justify-center items-center">
             <Player
@@ -19,7 +20,10 @@ const AdminRoute = ({ children }) => {
     if (user && isAdmin) {
         return children;
     }
-    return <Navigate to='/login' state={{ from: location }} replace></Navigate>;
+    if(!isAdmin){
+        logOut()
+        return <Navigate to='/login' state={{ from: location }} replace></Navigate>;
+    }
 };
 
 export default AdminRoute;

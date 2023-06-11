@@ -43,6 +43,7 @@ const Auth = ({ children }) => {
 
             else {
                 localStorage.removeItem('token')
+                setLoader(false)
             }
 
         })
