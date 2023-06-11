@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import Container from "../../components/Container";
 import useAuth from "../../Hooks/useAuth";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Navbar = () => {
     const { user, logOut } = useAuth()
+    const [isAdmin] = useAdmin();
     const navItem = <>
         <li><Link className="text-sm uppercase font-medium" to='/'>Home</Link></li>
         <li><Link className="text-sm uppercase font-medium" to='/instructors'>Instructors</Link></li>
         <li><Link className="text-sm uppercase font-medium" to='/classes'>Classes</Link></li>
-        {user ? <li><Link className="text-sm uppercase font-medium" to='/dashboard'>Dashboard</Link></li> : ''}
+        {user ? <li><Link className="text-sm uppercase font-medium" to={isAdmin ? '/dashboard/adminhome' : isInstructor ? '/dashboard/instructorhome' : '/dashboard/studenthome'}>Dashboard</Link></li> : ''}
     </>
     return (
         <>

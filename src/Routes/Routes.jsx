@@ -14,54 +14,60 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import InstructorHome from "../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
 import StudentHome from "../Pages/Dashboard/Student/StudentHome/StudentHome";
 import Private from "./Private/Private";
-
-const isAdmin = true
-const isInstructor = false
+import AdminRoute from "./AdminRoute/AdminRoute";
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Main></Main>,
-        errorElement:<Error></Error>,
-        children:[
+        path: '/',
+        element: <Main></Main>,
+        errorElement: <Error></Error>,
+        children: [
             {
-                path:'/',
-                element:<Home></Home>
+                path: '/',
+                element: <Home></Home>
             },
             {
-                path:'login',
-                element:<Login></Login>
+                path: 'login',
+                element: <Login></Login>
             },
             {
-                path:'registration',
-                element:<Registration></Registration>
+                path: 'registration',
+                element: <Registration></Registration>
             },
             {
-                path:'instructors',
-                element:<Allinstructors></Allinstructors>
+                path: 'instructors',
+                element: <Allinstructors></Allinstructors>
             },
             {
-                path:'classes',
-                element:<AllClasses></AllClasses>
+                path: 'classes',
+                element: <AllClasses></AllClasses>
             },
             {
-                path:'detailpage/:id',
-                element:<DetailPage></DetailPage>,
-                loader:({params})=> axios.get(`http://localhost:5000/instructors/${params.id}`)
+                path: 'detailpage/:id',
+                element: <DetailPage></DetailPage>,
+                loader: ({ params }) => axios.get(`http://localhost:5000/instructors/${params.id}`)
             }
         ]
     },
     {
-        path:'/',
-        element:<Private><DashboardLayout></DashboardLayout></Private>,
-        children:[
+        path: 'dashboard',
+        element: <Private><DashboardLayout></DashboardLayout></Private>,
+        children: [
             {
-                path:'dashboard',
-                element: isAdmin?<AdminHome></AdminHome>:isInstructor?<InstructorHome></InstructorHome>:<StudentHome></StudentHome>
+                path: 'adminhome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
             },
             {
-                path:'manageusers',
-                element:<ManageUsers></ManageUsers>
+                path: 'instructorhome',
+                element: <InstructorHome></InstructorHome>
+            },
+            {
+                path: 'studenthome',
+                element: <StudentHome></StudentHome>
+            },
+            {
+                path: 'manageusers',
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             }
         ]
     }
