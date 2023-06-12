@@ -1,11 +1,24 @@
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { BsGoogle } from 'react-icons/bs';
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const LoginAndRegistrationForm = ({ registration, onSubmit, error, register, handleSubmit, errors }) => {
     const [show, setShow] = useState(false)
-
+    const {auth}= useAuth()
+    const provider = new GoogleAuthProvider();
+    const handleSocial = (provider) =>{
+        signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          console.log(user);
+        }).catch((error) => {
+          const errorMessage = error.message;
+          console.log(errorMessage);
+        });
+    }
     return (
         <div className="w-[40%] mx-auto bg-slate-200 p-6 rounded-md">
 
@@ -122,7 +135,7 @@ const LoginAndRegistrationForm = ({ registration, onSubmit, error, register, han
                 <p className="text-center">New Here? <Link className="underline text-primary" to={`${registration ? '/login' : '/registration'}`}>{`${registration ? 'Click Here To Login' : 'Click Here To Registration'}`}</Link></p>
                 <div className="divider">OR</div>
                 <div className="flex justify-center">
-                    <div className="bg-black py-3 px-3 rounded-[50%] cursor-pointer"><BsGoogle className="text-2xl text-white"></BsGoogle></div>
+                    <div className="bg-black py-3 px-3 rounded-[50%] cursor-pointer"><BsGoogle onClick={()=> handleSocial(provider)} className="text-2xl text-white"></BsGoogle></div>
                 </div>
             </div>
         </div>

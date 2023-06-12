@@ -62,6 +62,7 @@ const Auth = ({ children }) => {
     const value = {
         user,
         loader,
+        auth,
         emailPassRegistration,
         emailPassLogin,
         logOut,

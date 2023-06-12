@@ -38,12 +38,7 @@ const Navbar = () => {
                                 </div>
                             </label>
                             <ul tabIndex={0} className="menu z-30 menu-sm dropdown-content mt-3 p-2 shadow bg-slate-100 rounded-box w-52">
-                                <li>
-                                    <a className="justify-between">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li onClick={logOut}><a>Logout</a></li>
+                               <li onClick={logOut}><a>Logout</a></li>
                             </ul>
                         </div> : <Link to='/login' className="btn text-white">Login</Link>}
                     </div>
