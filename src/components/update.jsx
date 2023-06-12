@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import useAuth from '../Hooks/useAuth';
 import useSecure from '../Hooks/useSecure';
 import { useForm } from 'react-hook-form';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useClasses from '../Hooks/useClasses';
 
 const Update = () => {
     const [error, setError] = useState('')
+    const [, refetch] = useClasses();
+    const navigate = useNavigate();
     const { user } = useAuth();
     const data = useLoaderData();
     const [secure] = useSecure();
@@ -19,16 +22,16 @@ const Update = () => {
             return setError("Available seat can't be greater than Total seat");
         }
         const classes = datas;
-        secure.put(`/myclasses/${data._id}`, classes)
+        secure.patch(`/myclasses/${data._id}`, classes)
             .then(res => {
-                console.log(res.data);
                 if (res.data.modifiedCount) {
+                    refetch()                    
                     Swal.fire(
                         'Updated!',
                         'Your Class has been Updated.',
                         'success'
                     )
-                    reset()
+                    navigate('/myclasses')
                 }
             })
 

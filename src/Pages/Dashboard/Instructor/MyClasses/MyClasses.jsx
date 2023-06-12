@@ -4,8 +4,7 @@ import Update from '../../../../components/update';
 import { Link } from 'react-router-dom';
 
 const MyClasses = () => {
-    const [classes, refetch] = useClasses()
-
+    const [classes, refetch] = useClasses();
     return (
         <>
             <div className="w-[95%] mx-auto pt-10">

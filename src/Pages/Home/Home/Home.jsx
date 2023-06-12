@@ -19,11 +19,11 @@ const Home = () => {
     }
     console.log(user);
     return (
-        <>
+        <div>
             <Carousel></Carousel>
             <PopularClasses></PopularClasses>
             <Instructors></Instructors>
-        </>
+        </div>
     );
 };
 

@@ -3,7 +3,7 @@ import Container from "../../components/Container";
 import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
-    const { user, logOut } = useAuth()
+    const { user, logOut } = useAuth();
     const navItem = <>
         <li><Link className="text-sm uppercase font-medium" to='/'>Home</Link></li>
         <li><Link className="text-sm uppercase font-medium" to='/instructors'>Instructors</Link></li>
