@@ -1,9 +1,10 @@
 import { Player } from "@lottiefiles/react-lottie-player";
-import useAdmin from "../../Hooks/useAdmin";
 import useAuth from "../../Hooks/useAuth";
+import { Navigate } from "react-router-dom";
+import useInstructor from "../../Hooks/useInstructor";
 
 const InstructorRoute = ({children}) => {
-    const [isInstructor, isInstructorLoading] = useAdmin();
+    const [isInstructor, isInstructorLoading] = useInstructor();
     const {user, loader} = useAuth();
     if (loader || isInstructorLoading) {
         return <div className="h-[100vh] flex justify-center items-center">

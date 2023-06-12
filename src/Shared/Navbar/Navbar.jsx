@@ -43,7 +43,6 @@ const Navbar = () => {
                                         Profile
                                     </a>
                                 </li>
-                                <li><a>Settings</a></li>
                                 <li onClick={logOut}><a>Logout</a></li>
                             </ul>
                         </div> : <Link to='/login' className="btn text-white">Login</Link>}
