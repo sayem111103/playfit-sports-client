@@ -2,14 +2,20 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../../Hooks/useAuth";
 import useSecure from "../../../../Hooks/useSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const AddClass = () => {
+    const [error, setError] = useState('')
     const {user} = useAuth();
     const [secure] = useSecure();
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
 
 
     const onSubmit = data => {
+        setError('')
+        if(parseFloat(data.totalSeat) < parseFloat(data.availableSeats)){
+            return setError("Available seat can't be greater than Total seat");
+        }
        data.status = 'pending'
        const classes = data;
        secure.post('/classes', classes)
@@ -20,6 +26,7 @@ const AddClass = () => {
                 'Your Class has been Added For Review.',
                 'success'
             )
+            reset()
         }
        })
 
@@ -28,6 +35,7 @@ const AddClass = () => {
         <div className="w-9/12 mx-auto">
             <form onSubmit={handleSubmit(onSubmit)}>
                     <h2 className="text-2xl font-extrabold text-center py-3">Add a Class</h2>
+                    {error?<p className="text-red-500 text-center py-3">{error}</p>:''}
                     {/* register your input into the hook by invoking the "register" function */}
                     <div className="form-control">
                         <label className="label">
@@ -64,6 +72,17 @@ const AddClass = () => {
                     {errors.totalSeat && <span className="text-red-500">This field is required*</span>}
                     {errors.totalSeat?.type === 'min' && <span className="text-red-500">Please Provide Valid Number*</span>}
                     {errors.totalSeat?.type === 'max' && <span className="text-red-500">Please Provide Valid Number*</span>}
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Price*</span>
+                        </label>
+                        <input type="number" placeholder="$ 0" className="input bg-white input-bordered bg-transparent"  {...register("price", { required: true, min:1, max:100 })} />
+                    </div>
+                    {errors.price && <span className="text-red-500">This field is required*</span>}
+                    {errors.price?.type === 'min' && <span className="text-red-500">Please Provide Valid Number*</span>}
+                    {errors.price?.type === 'max' && <span className="text-red-500">Please Provide Valid Number*</span>}
+
 
                     <div className="form-control">
                         <label className="label">
