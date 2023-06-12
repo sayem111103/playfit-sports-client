@@ -77,11 +77,10 @@ const AddClass = () => {
                     <label className="label">
                         <span className="label-text">Price*</span>
                     </label>
-                    <input type="number" placeholder="$ 0" className="input bg-white input-bordered bg-transparent"  {...register("price", { required: true, min: 1, max: 100 })} />
+                    <input type="number" placeholder="$ 0" className="input bg-white input-bordered bg-transparent"  {...register("price", { required: true, min: 1 })} />
                 </div>
                 {errors.price && <span className="text-red-500">This field is required*</span>}
                 {errors.price?.type === 'min' && <span className="text-red-500">Please Provide Valid Number*</span>}
-                {errors.price?.type === 'max' && <span className="text-red-500">Please Provide Valid Number*</span>}
 
 
                 <div className="form-control">

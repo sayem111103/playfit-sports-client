@@ -99,9 +99,9 @@ const ManageClasses = () => {
                                     {ud.instructorEmail}
                                 </td>
                                 <th className="text-center">                                    
-                                    {ud?.status === 'deny'?<button onClick={() => handleStatus(ud._id, 'deny')} className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">denied</button>
+                                    {ud?.status === 'denied'?<button className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">denied</button>
                                     :
-                                    <><button onClick={() => handleStatus(ud._id, 'deny')} disabled={ud?.status === 'approved' ? true : false} className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">deny</button>
+                                    <><button onClick={() => handleStatus(ud._id, 'denied')} disabled={ud?.status === 'approved' ? true : false} className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">deny</button>
                                     <button onClick={() => handleStatus(ud._id, 'approved')} disabled={ud?.status === 'approved' ? true : false} className={ud?.status === 'approved' ? 'btn disabled:bg-green-400 disabled:text-white text-xs btn-sm' : 'btn btn-primary text-xs btn-sm'}>{ud?.status === 'approved' ? 'approved' : 'approve'}</button></>}
                                 </th>
                             </tr>)}

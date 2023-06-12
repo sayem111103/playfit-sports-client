@@ -1,6 +1,5 @@
 import { AiFillEdit } from 'react-icons/ai';
 import useClasses from '../../../../Hooks/useClasses';
-import Update from '../../../../components/update';
 import { Link } from 'react-router-dom';
 
 const MyClasses = () => {
@@ -37,8 +36,8 @@ const MyClasses = () => {
                                 <td>{cd?.availableSeats}</td>
                                 <td>{cd?.feedback || 'Application is in review'}</td>
                                 <th className="text-center">
-                                    <Link to={`/update/${cd._id}`}><button className="btn btn-primary mr-3 text-xs btn-sm"><AiFillEdit title="edit"></AiFillEdit></button></Link>
-                                    <button className={`btn ${cd?.status === 'approved'? 'bg-green-400 border-0 text-white hover:bg-green-400' : 'btn-primary'} mr-3 text-xs btn-sm`}>{cd?.status === 'pending' ? 'pending' : cd?.status}</button>
+                                    <Link to={`/update/${cd._id}`}><button disabled={cd?.status === 'denied'? true: false} className="btn btn-primary mr-3 text-xs btn-sm"><AiFillEdit title="edit"></AiFillEdit></button></Link>
+                                    <button className={`btn ${cd?.status === 'approved'? 'bg-green-400 border-0 text-white hover:bg-green-400' :cd?.status === 'denied'? 'bg-red-500 hover:bg-red-500 text-white' : 'btn-primary'} mr-3 text-xs btn-sm border-0`}>{cd?.status === 'pending' ? 'pending' : cd?.status}</button>
                                 </th>
                             </tr>)}
                         </tbody>

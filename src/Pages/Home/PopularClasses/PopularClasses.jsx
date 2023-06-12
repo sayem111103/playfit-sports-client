@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
 import ClassCard from "../../../components/ClassCard";
 import Container from "../../../components/Container";
 import SectionHeader from "../../../components/sectionHeader";
-import useAxios from "../../../Hooks/useAxios";
+import useApproveClass from "../../../Hooks/useApproveClass";
 
 const PopularClasses = () => {
-    const [baseUrl] = useAxios();
-    const [classes,setClasses] = useState([]);
-    useEffect(()=>{
-        baseUrl.get('/classes')
-        .then(res=> setClasses(res.data))
-    },[])
+    const [classes] = useApproveClass()
     const popular = classes.filter(cd => cd.availableSeats <= 3);
     return (
         <section className="py-20">
