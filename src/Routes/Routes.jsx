@@ -7,7 +7,6 @@ import Registration from "../Pages/Registration/Registration";
 import Allinstructors from "../Pages/Allinstructors/Allinstructors";
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import DetailPage from "../Pages/DetailPage/DetailPage";
-import axios from "axios";
 import DashboardLayout from "../Layout/DashboardLayout";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import Private from "./Private/Private";
@@ -17,6 +16,7 @@ import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses.jsx/ManageClas
 import AddClass from "../Pages/Dashboard/Instructor/AddClass/AddClass";
 import MyClasses from "../Pages/Dashboard/Instructor/MyClasses/MyClasses";
 import InstructorRoute from "./InstructorRoute/InstructorRoute";
+import Update from "../components/update";
 
 const router = createBrowserRouter([
     {
@@ -75,6 +75,11 @@ const router = createBrowserRouter([
             {
                 path:'myclasses',
                 element:<InstructorRoute><MyClasses></MyClasses></InstructorRoute>
+            },
+            {
+                path:'update/:id',
+                element:<InstructorRoute><Update></Update></InstructorRoute>,
+                loader:({params}) => fetch(`http://localhost:5000/myclasses/${params.id}`)
             }
         ]
     }

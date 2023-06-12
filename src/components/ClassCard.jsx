@@ -3,7 +3,7 @@ import LazyLoad from "react-lazy-load";
 const ClassCard = ({data}) => {
     return (
         <>
-            <div className="card w-96 glass">
+            <div className="card w-[95%] mx-auto mb-4 lg:w-96 glass">
                 <figure><LazyLoad className="w-full"><img className="h-[250px] w-full" src={data?.image} alt={data?.image} /></LazyLoad></figure>
                 <div className="card-body">
                     <h2 className="card-title font-bold">{data?.name}</h2>

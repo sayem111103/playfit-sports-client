@@ -1,29 +1,31 @@
-import { useForm } from "react-hook-form";
-import useAuth from "../../../../Hooks/useAuth";
-import useSecure from "../../../../Hooks/useSecure";
-import Swal from "sweetalert2";
-import { useState } from "react";
+import React, { useState } from 'react';
+import useAuth from '../Hooks/useAuth';
+import useSecure from '../Hooks/useSecure';
+import { useForm } from 'react-hook-form';
+import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-const AddClass = () => {
+const Update = () => {
     const [error, setError] = useState('')
     const { user } = useAuth();
+    const data = useLoaderData();
     const [secure] = useSecure();
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
 
-
-    const onSubmit = data => {
+    // console.log(data);
+    const onSubmit = datas => {
         setError('')
-        if (parseFloat(data.totalSeat) < parseFloat(data.availableSeats)) {
+        if (parseFloat(datas.totalSeat) < parseFloat(datas.availableSeats)) {
             return setError("Available seat can't be greater than Total seat");
         }
-        data.status = 'pending'
-        const classes = data;
-        secure.post('/classes', classes)
+        const classes = datas;
+        secure.put(`/myclasses/${data._id}`, classes)
             .then(res => {
-                if (res.data.insertedId) {
+                console.log(res.data);
+                if (res.data.modifiedCount) {
                     Swal.fire(
-                        'Added!',
-                        'Your Class has been Added For Review.',
+                        'Updated!',
+                        'Your Class has been Updated.',
                         'success'
                     )
                     reset()
@@ -33,15 +35,15 @@ const AddClass = () => {
     };
     return (
         <div className="w-9/12 mx-auto pt-10">
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <h2 className='text-center mb-6 font-extrabold text-4xl uppercase'>Add a Class</h2>
+            <form className='text-black' onSubmit={handleSubmit(onSubmit)}>
                 {error ? <p className="text-red-500 text-center py-3">{error}</p> : ''}
                 {/* register your input into the hook by invoking the "register" function */}
+                <h2 className='text-center mb-6 font-extrabold text-4xl uppercase'>Update Class</h2>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Class Name*</span>
                     </label>
-                    <input type="text" placeholder="Your Name" className="input bg-white input-bordered bg-transparent"  {...register("name", { required: true })} />
+                    <input type="text" defaultValue={data?.name} className="input bg-white input-bordered bg-transparent"  {...register("name", { required: true })} />
                 </div>
                 {errors.name && <span className="text-red-500">This field is required*</span>}
 
@@ -49,7 +51,7 @@ const AddClass = () => {
                     <label className="label">
                         <span className="label-text">Instructor Name*</span>
                     </label>
-                    <input type="text" defaultValue={user?.name || 'N/A'} className="input bg-white input-bordered bg-transparent"  {...register("instructor", { required: true })} />
+                    <input type="text" defaultValue={data?.instructor} className="input bg-white input-bordered bg-transparent"  {...register("instructor", { required: true })} />
                 </div>
                 {errors.instructor && <span className="text-red-500">This field is required*</span>}
 
@@ -57,7 +59,7 @@ const AddClass = () => {
                     <label className="label">
                         <span className="label-text">Available Seats*</span>
                     </label>
-                    <input type="number" placeholder="0" className="input bg-white input-bordered bg-transparent"  {...register("availableSeats", { required: true, min: 1, max: 100 })} />
+                    <input type="number" defaultValue={data?.availableSeats} className="input bg-white input-bordered bg-transparent"  {...register("availableSeats", { required: true, min: 1, max: 100 })} />
                 </div>
                 {errors.availableSeats && <span className="text-red-500">This field is required*</span>}
                 {errors.availableSeats?.type === 'min' && <span className="text-red-500">Please Provide Valid Number*</span>}
@@ -67,7 +69,7 @@ const AddClass = () => {
                     <label className="label">
                         <span className="label-text">Total Seats*</span>
                     </label>
-                    <input type="number" placeholder="0" className="input bg-white input-bordered bg-transparent"  {...register("totalSeat", { required: true, min: 1, max: 100 })} />
+                    <input type="number" defaultValue={data?.totalSeat} className="input bg-white input-bordered bg-transparent"  {...register("totalSeat", { required: true, min: 1, max: 100 })} />
                 </div>
                 {errors.totalSeat && <span className="text-red-500">This field is required*</span>}
                 {errors.totalSeat?.type === 'min' && <span className="text-red-500">Please Provide Valid Number*</span>}
@@ -77,7 +79,7 @@ const AddClass = () => {
                     <label className="label">
                         <span className="label-text">Price*</span>
                     </label>
-                    <input type="number" placeholder="$ 0" className="input bg-white input-bordered bg-transparent"  {...register("price", { required: true, min: 1, max: 100 })} />
+                    <input type="number" defaultValue={data?.price} className="input bg-white input-bordered bg-transparent"  {...register("price", { required: true, min: 1, max: 100 })} />
                 </div>
                 {errors.price && <span className="text-red-500">This field is required*</span>}
                 {errors.price?.type === 'min' && <span className="text-red-500">Please Provide Valid Number*</span>}
@@ -97,15 +99,15 @@ const AddClass = () => {
                     <label className="label">
                         <span className="label-text">Photo*</span>
                     </label>
-                    <input type="url" placeholder="Photo url" className="input bg-white input-bordered bg-transparent"  {...register("image", { required: true })} />
+                    <input type="url" defaultValue={data?.image} className="input bg-white input-bordered bg-transparent"  {...register("image", { required: true })} />
                 </div>
                 {errors.image && <span className="text-red-500">This field is required*</span>}
 
 
-                <input className="btn btn-success my-3 text-white mx-auto block" type="submit" value={'Add a Class'} />
+                <input className="btn btn-success my-3 text-white mx-auto block" type="submit" value={'Update Class'} />
             </form>
         </div>
     );
 };
 
-export default AddClass;
+export default Update;

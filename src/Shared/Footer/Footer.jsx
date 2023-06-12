@@ -8,24 +8,24 @@ const Footer = () => {
     return (
         <div className="bg-base-200">
             <Container>
-                <footer className="footer p-10 text-base-content">
-                    <div className="flex h-[100%] items-center">
+                <footer className="footer bg-base-200 p-10 justify-center w-full sm:grid-cols-2 sm:grid lg:grid-cols-4 text-base-content">
+                    <div className="flex h-[100%] items-center mx-auto">
                         <Link className="font-extrabold text-2xl uppercase" to='/'><h1 className="font-extrabold text-2xl uppercase tracking-[4px]">Playfit <span className="block tracking-[6px]">sports</span></h1>Academy</Link>
                     </div>
-                    <div>
+                    <div className="mx-auto">
                         <span className="footer-title">Institute</span>
                         <a className="link link-hover text-white">About us</a>
                         <a className="link link-hover text-white">Classes</a>
                         <a className="link link-hover text-white">Instructors</a>
                     </div>
-                    <div>
+                    <div className="mx-auto">
                         <span className="footer-title">Contact With Us</span>
                         <a className="link link-hover text-white flex gap-2 items-center" href="mailto:playfitsports@example.com"><MdEmail></MdEmail>playfitsports@example.com</a>
                         <a className="link link-hover text-white flex gap-2 items-center" href="tel:+880175...."><BsFillTelephoneFill></BsFillTelephoneFill>+880175....</a>
                         <p className="link link-hover text-white flex gap-2 items-center"><HiLocationMarker></HiLocationMarker>Kazipur, Sirajganj, Bangladesh</p>
 
                     </div>
-                    <div>
+                    <div className="mx-auto">
                         <span className="footer-title">Legal</span>
                         <a className="link link-hover text-white">Terms of use</a>
                         <a className="link link-hover text-white">Privacy policy</a>

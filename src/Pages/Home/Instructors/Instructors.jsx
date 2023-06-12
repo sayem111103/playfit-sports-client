@@ -9,7 +9,7 @@ const Instructors = () => {
         <section className="pb-20">
             <Container>
                 <SectionHeader name={'Popular Instructors'}></SectionHeader>
-                <div className="grid grid-cols-3 gap-6 pt-6">
+                <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
                     {instructors?.slice(0,6).map(id => <InstructorCard key={id._id} data={id}></InstructorCard>)}
                 </div>
             </Container>

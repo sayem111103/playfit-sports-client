@@ -16,7 +16,7 @@ const PopularClasses = () => {
         <section className="py-20">
             <Container>
                 <SectionHeader name={'Popular classes'}></SectionHeader>
-                <div className="grid grid-cols-3 pt-6">
+                <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 pt-6">
                     {popular?.map(pd => <ClassCard key={pd._id} data={pd}></ClassCard>)}
                 </div>
             </Container>
