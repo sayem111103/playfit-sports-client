@@ -30,7 +30,7 @@ const ManageUsers = () => {
     }
 
     return (
-        <div className="w-9/12">
+        <div className="w-9/12 mx-auto pt-10">
             <h3 className='text-center mb-6 font-extrabold text-4xl uppercase'>Manage User</h3>
             <div className="overflow-x-auto">
                 <table className="table rounded-t-xl overflow-hidden">

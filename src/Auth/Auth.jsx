@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
 import app from '../Firebase/firbase.config';
 import useAxios from '../Hooks/useAxios';
+import Swal from 'sweetalert2';
 
 export const authContext = createContext(null);
 const auth = getAuth(app);
@@ -19,7 +20,13 @@ const Auth = ({ children }) => {
     }
 
     const logOut = () => {
-        return signOut(auth);
+        return signOut(auth).then(()=> {
+            Swal.fire(
+                '',
+                'Successfully Logout',
+                'success'
+              )
+        })
     }
 
     const updateProf = (name, photo) => {

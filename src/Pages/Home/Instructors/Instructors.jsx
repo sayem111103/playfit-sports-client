@@ -1,10 +1,10 @@
 import Container from "../../../components/Container";
 import SectionHeader from "../../../components/sectionHeader";
 import InstructorCard from "../../../components/InstructorCard";
-import useInstructor from "../../../Hooks/useInstructor";
+import useInstructors from "../../../Hooks/useInstructors";
 
 const Instructors = () => {
-    const [instructors, refetch] = useInstructor()
+    const [instructors, refetch] = useInstructors()
     return (
         <section className="pb-20">
             <Container>
