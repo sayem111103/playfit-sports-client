@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import Carousel from "../Carousel/Carousel";
 import Instructors from "../Instructors/Instructors";
 import PopularClasses from "../PopularClasses/PopularClasses";
+import OurCampus from "../OurCampus/OurCampus";
 
 const Home = () => {
     const {user,loader} = useAuth();
@@ -23,6 +24,7 @@ const Home = () => {
             <Carousel></Carousel>
             <PopularClasses></PopularClasses>
             <Instructors></Instructors>
+            <OurCampus></OurCampus>
         </div>
     );
 };
