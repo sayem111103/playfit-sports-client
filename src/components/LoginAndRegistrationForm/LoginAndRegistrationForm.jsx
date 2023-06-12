@@ -4,16 +4,24 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { BsGoogle } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import useAxios from "../../Hooks/useAxios";
 
 const LoginAndRegistrationForm = ({ registration, onSubmit, error, register, handleSubmit, errors }) => {
     const [show, setShow] = useState(false)
+    const [baseUrl] = useAxios()
     const {auth}= useAuth()
     const provider = new GoogleAuthProvider();
     const handleSocial = (provider) =>{
         signInWithPopup(auth, provider)
         .then((result) => {
           const user = result.user;
-          console.log(user);
+          baseUrl.post('/user', {
+            name: user?.name,
+            email: user?.email,
+            photo: user?.photoURL,
+            role: 'student'
+        })
+            .then(res => { })
         }).catch((error) => {
           const errorMessage = error.message;
           console.log(errorMessage);

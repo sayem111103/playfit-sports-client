@@ -17,6 +17,7 @@ import AddClass from "../Pages/Dashboard/Instructor/AddClass/AddClass";
 import MyClasses from "../Pages/Dashboard/Instructor/MyClasses/MyClasses";
 import InstructorRoute from "./InstructorRoute/InstructorRoute";
 import Update from "../components/update";
+import MySelectedClass from "../Pages/Dashboard/Student/MySelectedClass/MySelectedClass";
 
 const router = createBrowserRouter([
     {
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
             {
                 path: 'detailpage/:id',
                 element: <DetailPage></DetailPage>,
-                loader: ({ params }) => axios.get(`https://playfit-sports-server.vercel.app/instructors/${params.id}`)
+                loader: ({ params }) => axios.get(`http://localhost:5000/instructors/${params.id}`)
             }
         ]
     },
@@ -79,7 +80,11 @@ const router = createBrowserRouter([
             {
                 path:'update/:id',
                 element:<InstructorRoute><Update></Update></InstructorRoute>,
-                loader:({params}) => fetch(`https://playfit-sports-server.vercel.app/myclasses/${params.id}`)
+                loader:({params}) => fetch(`http://localhost:5000/myclasses/${params.id}`)
+            },
+            {
+                path:'myselectedclasses',
+                element:<Private><MySelectedClass></MySelectedClass></Private>
             }
         ]
     }
