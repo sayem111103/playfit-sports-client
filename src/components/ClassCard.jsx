@@ -2,13 +2,37 @@ import LazyLoad from "react-lazy-load";
 import useSecure from "../Hooks/useSecure";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ClassCard = ({data}) => {
     const {user} = useAuth();
+    const navigate = useNavigate()
     const [secure] = useSecure();
     const handlecart = (data) =>{
+        if(!user){
+          return Swal.fire({
+                title: 'Are you sure?',
+                text: "If you want to Enroll class then first you need to login",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate('/login')
+                }
+              })
+        }
         secure.post('/classcart',{id: data?._id,name:data?.name,price:data?.price,email:user?.email})
         .then(res =>{
+            if(res.data.message === "already exist"){
+                Swal.fire(
+                    '',
+                    'You can not Enroll twice with same user',
+                    'error'
+                  )
+            }
             if(res.data.insertedId){
                 Swal.fire(
                     '',

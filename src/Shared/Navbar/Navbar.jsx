@@ -23,7 +23,7 @@ const Navbar = () => {
                                 {navItem}
                             </ul>
                         </div>
-                        <Link to='/' className="font-extrabold uppercase text-xl">Playfit Sports Academy</Link>
+                        <Link to='/' className="font-extrabold uppercase text-xs sm:text-xl">Playfit Sports Academy</Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1">
