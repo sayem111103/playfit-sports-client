@@ -4,6 +4,7 @@ import { MdPeopleAlt } from 'react-icons/md';
 import { ImBooks } from 'react-icons/im';
 import { MdLibraryBooks } from 'react-icons/md';
 import { BiMoney } from 'react-icons/bi';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 import useAdmin from "../Hooks/useAdmin";
 import useInstructor from "../Hooks/useInstructor";
 
@@ -31,6 +32,7 @@ const DashboardLayout = () => {
                     <li><Link to='paymenthistory' className="text-black"><BiMoney className='text-black'></BiMoney>Payment History</Link></li>
                 </>}
             </>}
+            <li><Link className="capitalize text-black" to='/'><AiOutlineArrowLeft></AiOutlineArrowLeft>go to home</Link></li>
     </>
 
     return (
