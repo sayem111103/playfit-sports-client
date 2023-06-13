@@ -1,13 +1,14 @@
 import { AiFillEdit } from 'react-icons/ai';
 import useClasses from '../../../../Hooks/useClasses';
 import { Link } from 'react-router-dom';
+import DashboardHeader from '../../../../components/DashboardHeader';
 
 const MyClasses = () => {
     const [classes, refetch] = useClasses();
     return (
         <>
             <div className="w-[95%] mx-auto pt-10">
-                <h3 className='text-center mb-6 font-extrabold text-4xl uppercase'>My Classes</h3>
+                <DashboardHeader name={'My Classes'} />
                 <div className="overflow-x-auto">
                     <table className="table rounded-t-xl overflow-hidden">
                         {/* head */}

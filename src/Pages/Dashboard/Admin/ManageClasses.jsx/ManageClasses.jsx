@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useManageClasses from "../../../../Hooks/useManageClasses";
 import useSecure from "../../../../Hooks/useSecure";
+import DashboardHeader from "../../../../components/DashboardHeader";
 
 const ManageClasses = () => {
     const [classes, refetch] = useManageClasses();
@@ -58,7 +59,7 @@ const ManageClasses = () => {
     return (
         <div>
             <div className="w-full px-4 mx-auto py-10">
-                <h3 className='text-center mb-6 font-extrabold text-4xl uppercase'>Manage Classes</h3>
+                <DashboardHeader name={'Manage Classes'} />
                 <div className="overflow-x-auto">
                     <table className="table rounded-t-xl overflow-hidden">
                         {/* head */}
@@ -77,7 +78,7 @@ const ManageClasses = () => {
                             {/* row */}
                             {classes?.map((ud, index) => <tr className="border-b-slate-200" key={ud._id}>
                                 <td>
-                                <button onClick={() => handleDelete(ud._id)} disabled={ud?.role === 'admin' ? true : false} className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">X</button>
+                                    <button onClick={() => handleDelete(ud._id)} disabled={ud?.role === 'admin' ? true : false} className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">X</button>
                                 </td>
                                 <td>{index + 1}.</td>
                                 <td>
@@ -98,11 +99,11 @@ const ManageClasses = () => {
                                 <td className="text-xs">
                                     {ud.instructorEmail}
                                 </td>
-                                <th className="text-center">                                    
-                                    {ud?.status === 'denied'?<button className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">denied</button>
-                                    :
-                                    <><button onClick={() => handleStatus(ud._id, 'denied')} disabled={ud?.status === 'approved' ? true : false} className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">deny</button>
-                                    <button onClick={() => handleStatus(ud._id, 'approved')} disabled={ud?.status === 'approved' ? true : false} className={ud?.status === 'approved' ? 'btn disabled:bg-green-400 disabled:text-white text-xs btn-sm' : 'btn btn-primary text-xs btn-sm'}>{ud?.status === 'approved' ? 'approved' : 'approve'}</button></>}
+                                <th className="text-center">
+                                    {ud?.status === 'denied' ? <button className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">denied</button>
+                                        :
+                                        <><button onClick={() => handleStatus(ud._id, 'denied')} disabled={ud?.status === 'approved' ? true : false} className="btn bg-red-500 text-white border-0 hover:bg-red-500 mr-3 text-xs btn-sm">deny</button>
+                                            <button onClick={() => handleStatus(ud._id, 'approved')} disabled={ud?.status === 'approved' ? true : false} className={ud?.status === 'approved' ? 'btn disabled:bg-green-400 disabled:text-white text-xs btn-sm' : 'btn btn-primary text-xs btn-sm'}>{ud?.status === 'approved' ? 'approved' : 'approve'}</button></>}
                                 </th>
                             </tr>)}
                         </tbody>

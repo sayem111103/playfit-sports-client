@@ -34,7 +34,7 @@ const AddClass = () => {
     return (
         <div className="w-9/12 mx-auto pt-10">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h2 className='text-center mb-6 font-extrabold text-4xl uppercase'>Add a Class</h2>
+                <DashboardHeader name={'Add a Class'} />
                 {error ? <p className="text-red-500 text-center py-3">{error}</p> : ''}
                 {/* register your input into the hook by invoking the "register" function */}
                 <div className="form-control">

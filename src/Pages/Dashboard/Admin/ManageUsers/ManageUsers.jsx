@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAxios from "../../../../Hooks/useAxios";
 import useUser from "../../../../Hooks/useUser";
+import DashboardHeader from "../../../../components/DashboardHeader";
 
 const ManageUsers = () => {
     const [users, refetch] = useUser();
@@ -31,7 +32,7 @@ const ManageUsers = () => {
 
     return (
         <div className="w-9/12 mx-auto pt-10">
-            <h3 className='text-center mb-6 font-extrabold text-4xl uppercase'>Manage User</h3>
+            <DashboardHeader name={'Manage User'} />
             <div className="overflow-x-auto">
                 <table className="table rounded-t-xl overflow-hidden">
                     {/* head */}
@@ -58,8 +59,8 @@ const ManageUsers = () => {
                                 {ud.email}
                             </td>
                             <th className="text-center">
-                                <button onClick={() => handleRole(ud._id, 'admin',ud)} disabled={ud?.role === 'admin' ? true : false} className="btn btn-primary mr-3 text-xs btn-sm">admin</button>
-                                <button onClick={() => handleRole(ud._id, 'instructor',ud)} disabled={ud?.role === 'instructor' ? true : false} className="btn btn-primary text-xs btn-sm">instructor</button>
+                                <button onClick={() => handleRole(ud._id, 'admin', ud)} disabled={ud?.role === 'admin' ? true : false} className="btn btn-primary mr-3 text-xs btn-sm">admin</button>
+                                <button onClick={() => handleRole(ud._id, 'instructor', ud)} disabled={ud?.role === 'instructor' ? true : false} className="btn btn-primary text-xs btn-sm">instructor</button>
                             </th>
                         </tr>)}
                     </tbody>
