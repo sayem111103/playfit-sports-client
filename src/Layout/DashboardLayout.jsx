@@ -3,6 +3,7 @@ import { FaHome } from 'react-icons/fa';
 import { MdPeopleAlt } from 'react-icons/md';
 import { ImBooks } from 'react-icons/im';
 import { MdLibraryBooks } from 'react-icons/md';
+import { BiMoney } from 'react-icons/bi';
 import useAdmin from "../Hooks/useAdmin";
 import useInstructor from "../Hooks/useInstructor";
 
@@ -27,7 +28,7 @@ const DashboardLayout = () => {
                     <li><Link to='dashboard' className="text-black"><FaHome className="text-black"></FaHome>Student Home</Link></li>
                     <li><Link to='myselectedclasses' className="text-black"><MdPeopleAlt className='text-black'></MdPeopleAlt>My Selected Classes</Link></li>
                     <li><Link to='myenrolledclasses' className="text-black"><ImBooks className='text-black'></ImBooks>My Enrolled Classes</Link></li>
-                    <li><Link to='payment' className="text-black"><MdLibraryBooks className='text-black'></MdLibraryBooks>Payment</Link></li>
+                    <li><Link to='paymenthistory' className="text-black"><BiMoney className='text-black'></BiMoney>Payment History</Link></li>
                 </>}
             </>}
     </>
