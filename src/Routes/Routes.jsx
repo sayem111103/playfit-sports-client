@@ -20,6 +20,8 @@ import Update from "../components/update";
 import MySelectedClass from "../Pages/Dashboard/Student/MySelectedClass/MySelectedClass";
 import axios from "axios";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import MyEnrollClass from "../Pages/Dashboard/Student/MyEnrollClass/MyEnrollClass";
+import PaymentHistory from "../Pages/Dashboard/Student/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -89,8 +91,16 @@ const router = createBrowserRouter([
                 element:<Private><MySelectedClass></MySelectedClass></Private>
             },
             {
+                path:'myenrolledclasses',
+                element:<Private><MyEnrollClass></MyEnrollClass></Private>
+            },
+            {
                 path:'payment/:id',
                 element:<Private><Payment></Payment></Private>
+            },
+            {
+                path:'paymenthistory',
+                element:<Private><PaymentHistory></PaymentHistory></Private>
             }
         ]
     }

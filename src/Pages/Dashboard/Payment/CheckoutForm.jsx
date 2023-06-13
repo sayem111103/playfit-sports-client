@@ -5,8 +5,8 @@ import useAuth from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import useCart from "../../../Hooks/useCart";
 
-const CheckoutForm = ({ data }) => {  
-    const [,refetch] = useCart();
+const CheckoutForm = ({ data }) => {
+    const [, refetch] = useCart();
     const [cardError, setCardError] = useState('');
     const [clientSecret, setClientSecret] = useState('');
     const [transactionId, setTransactionId] = useState('');
@@ -16,14 +16,14 @@ const CheckoutForm = ({ data }) => {
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
-    
+
 
     useEffect(() => {
         secure.post('/create-payment-intent', { price: data?.price })
             .then(res => {
                 setClientSecret(res.data.clientSecret);
             })
-    }, [secure,data?.price])
+    }, [secure, data?.price])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,7 +43,7 @@ const CheckoutForm = ({ data }) => {
         });
         if (error) {
             // Show error to your customer
-            setCardError(submitError.message);
+            setCardError(error.message);
         }
         else {
             setCardError('')
@@ -73,19 +73,21 @@ const CheckoutForm = ({ data }) => {
         if (paymentIntent.status === "succeeded") {
             setTransactionId(paymentIntent?.id);
             secure.delete(`/classcart/${data._id}`)
-            .then(res =>{})
+                .then(res => { })
             const payment = {
                 email: user?.email,
                 transactionId: paymentIntent?.id,
                 price: data?.price,
                 date: new Date(),
-                classId: data?.id                
+                classId: data?.id,
+                name: data?.name,
+                status: 'paid'
             }
             secure.post('/payment', payment)
                 .then(res => {
                     if (res.data.insertedId) {
                         refetch()
-                        navigate('/myselectedclasses')
+                        navigate('/myenrolledclasses')
                     }
                 })
         }

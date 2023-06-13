@@ -3,6 +3,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import useSecure from "../../../../Hooks/useSecure";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import DashboardHeader from "../../../../components/DashboardHeader";
 
 const AddClass = () => {
     const [error, setError] = useState('')

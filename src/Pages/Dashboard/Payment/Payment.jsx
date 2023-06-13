@@ -9,7 +9,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_PUBLISHABLE_KEY);
 
 const Payment = () => {
     const {id} = useParams();
-    const [cart,] = useCart();   
+    const [cart,] = useCart();
     const find = cart.find(cd => cd._id === id);
 
     return (

@@ -16,7 +16,7 @@ const LoginAndRegistrationForm = ({ registration, onSubmit, error, register, han
         .then((result) => {
           const user = result.user;
           baseUrl.post('/user', {
-            name: user?.name,
+            name: user?.displayName,
             email: user?.email,
             photo: user?.photoURL,
             role: 'student'

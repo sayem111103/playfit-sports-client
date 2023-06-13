@@ -17,6 +17,7 @@ const MyClasses = () => {
                                 <th></th>
                                 <th className="text-sm">Class Name</th>
                                 <th className="text-sm">Total Seat</th>
+                                <th className="text-sm">Total Student</th>
                                 <th className="text-sm">Available Seat</th>
                                 <th className="text-sm">Feedback</th>
                                 <th className="text-center text-sm">Action</th>
@@ -34,6 +35,7 @@ const MyClasses = () => {
                                     </div>
                                 </td>
                                 <td>{cd?.totalSeat}</td>
+                                <td>{parseFloat(cd?.totalSeat - cd?.availableSeats)}</td>
                                 <td>{cd?.availableSeats}</td>
                                 <td>{cd?.feedback || 'Application is in review'}</td>
                                 <th className="text-center">

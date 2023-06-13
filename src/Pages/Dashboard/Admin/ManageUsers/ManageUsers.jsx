@@ -2,9 +2,11 @@ import Swal from "sweetalert2";
 import useAxios from "../../../../Hooks/useAxios";
 import useUser from "../../../../Hooks/useUser";
 import DashboardHeader from "../../../../components/DashboardHeader";
+import useAuth from "../../../../Hooks/useAuth";
 
 const ManageUsers = () => {
     const [users, refetch] = useUser();
+    const {user} = useAuth()
     const [baseUrl] = useAxios();
     const handleRole = (id, name, data) => {
         baseUrl.patch(`user/${id}`, { name: name })
@@ -46,21 +48,21 @@ const ManageUsers = () => {
                     </thead>
                     <tbody>
                         {/* row */}
-                        {users?.map((ud, index) => <tr className="border-b-slate-200" key={ud._id}>
+                        {users?.map((ud, index) => <tr className="border-b-slate-200" key={ud?._id}>
                             <td>{index + 1}.</td>
                             <td>
                                 <div className="flex items-center space-x-3">
                                     <div>
-                                        <div className="font-bold">{ud.name}</div>
+                                        <div className="font-bold">{ud?.name || user.displayName}</div>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                {ud.email}
+                                {ud?.email}
                             </td>
                             <th className="text-center">
-                                <button onClick={() => handleRole(ud._id, 'admin', ud)} disabled={ud?.role === 'admin' ? true : false} className="btn btn-primary mr-3 text-xs btn-sm">admin</button>
-                                <button onClick={() => handleRole(ud._id, 'instructor', ud)} disabled={ud?.role === 'instructor' ? true : false} className="btn btn-primary text-xs btn-sm">instructor</button>
+                                <button onClick={() => handleRole(ud?._id, 'admin', ud)} disabled={ud?.role === 'admin' ? true : false} className="btn btn-primary mr-3 text-xs btn-sm">admin</button>
+                                <button onClick={() => handleRole(ud?._id, 'instructor', ud)} disabled={ud?.role === 'instructor' ? true : false} className="btn btn-primary text-xs btn-sm">instructor</button>
                             </th>
                         </tr>)}
                     </tbody>
