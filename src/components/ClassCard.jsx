@@ -26,6 +26,13 @@ const ClassCard = ({data}) => {
         }
         secure.post('/classcart',{id: data?._id,name:data?.name,price:data?.price,email:user?.email})
         .then(res =>{
+            if(res.data.message === "Only student can enroll"){
+                Swal.fire(
+                    '',
+                    'Only student can enroll',
+                    'error'
+                  )
+            }
             if(res.data.message === "already exist"){
                 Swal.fire(
                     '',
@@ -53,7 +60,7 @@ const ClassCard = ({data}) => {
                     <p className="text-md font-light"><span className="text-lg font-medium">Available Seats:</span> {data?.availableSeats}</p>
                     <p className="text-md font-light"><span className="text-lg font-medium">Price:</span> ${data?.price}</p>
                     <div className="card-actions justify-end">
-                        <button onClick={()=> handlecart(data)} disabled={data?.availableSeats === 0? true : false} className="btn btn-primary">Enroll now!</button>
+                        <button onClick={()=> handlecart(data)} disabled={data?.availableSeats === 0} className="btn btn-primary">Enroll now!</button>
                     </div>
                 </div>
             </div>

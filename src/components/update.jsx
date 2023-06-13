@@ -15,7 +15,6 @@ const Update = () => {
     const [secure] = useSecure();
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
 
-    // console.log(data);
     const onSubmit = datas => {
         setError('')
         if (parseFloat(datas.totalSeat) < parseFloat(datas.availableSeats)) {
@@ -25,7 +24,7 @@ const Update = () => {
         secure.patch(`/myclasses/${data._id}`, classes)
             .then(res => {
                 if (res.data.modifiedCount) {
-                    refetch()                    
+                    refetch()
                     Swal.fire(
                         'Updated!',
                         'Your Class has been Updated.',

@@ -52,7 +52,7 @@ const router = createBrowserRouter([
             {
                 path: 'detailpage/:id',
                 element: <DetailPage></DetailPage>,
-                loader: ({ params }) => axios.get(`http://localhost:5000/instructors/${params.id}`)
+                loader: ({ params }) => axios.get(`https://playfit-sports-server-sayem111103.vercel.app/instructors/${params.id}`)
             }
         ]
     },
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
             {
                 path:'update/:id',
                 element:<InstructorRoute><Update></Update></InstructorRoute>,
-                loader:({params}) => fetch(`http://localhost:5000/myclasses/${params.id}`)
+                loader:({params}) => fetch(`https://playfit-sports-server-sayem111103.vercel.app/myclasses/${params.id}`)
             },
             {
                 path:'myselectedclasses',

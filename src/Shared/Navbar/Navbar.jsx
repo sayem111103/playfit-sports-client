@@ -40,7 +40,7 @@ const Navbar = () => {
                             <ul tabIndex={0} className="menu z-30 menu-sm dropdown-content mt-3 p-2 shadow bg-slate-100 rounded-box w-52">
                                <li onClick={logOut}><a>Logout</a></li>
                             </ul>
-                        </div> : <Link to='/login' className="btn text-white">Login</Link>}
+                        </div> : <Link to='/login' className="btn bg-black text-white">Login</Link>}
                     </div>
                 </nav>
             </Container>

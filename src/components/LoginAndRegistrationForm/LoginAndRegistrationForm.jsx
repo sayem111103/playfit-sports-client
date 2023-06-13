@@ -9,26 +9,26 @@ import useAxios from "../../Hooks/useAxios";
 const LoginAndRegistrationForm = ({ registration, onSubmit, error, register, handleSubmit, errors }) => {
     const [show, setShow] = useState(false)
     const [baseUrl] = useAxios()
-    const {auth}= useAuth()
+    const { auth } = useAuth()
     const provider = new GoogleAuthProvider();
-    const handleSocial = (provider) =>{
+    const handleSocial = (provider) => {
         signInWithPopup(auth, provider)
-        .then((result) => {
-          const user = result.user;
-          baseUrl.post('/user', {
-            name: user?.displayName,
-            email: user?.email,
-            photo: user?.photoURL,
-            role: 'student'
-        })
-            .then(res => { })
-        }).catch((error) => {
-          const errorMessage = error.message;
-          console.log(errorMessage);
-        });
+            .then((result) => {
+                const user = result.user;
+                baseUrl.post('/user', {
+                    name: user?.displayName,
+                    email: user?.email,
+                    photo: user?.photoURL,
+                    role: 'student'
+                })
+                    .then(res => { })
+            }).catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
     }
     return (
-        <div className="w-[40%] mx-auto bg-slate-200 p-6 rounded-md">
+        <div className="w-[90%] sm:w-[60%] lg:w-[40%] mx-auto bg-slate-200 p-6 rounded-md">
 
             {/* registration */}
             {registration ?
@@ -143,7 +143,7 @@ const LoginAndRegistrationForm = ({ registration, onSubmit, error, register, han
                 <p className="text-center">New Here? <Link className="underline text-primary" to={`${registration ? '/login' : '/registration'}`}>{`${registration ? 'Click Here To Login' : 'Click Here To Registration'}`}</Link></p>
                 <div className="divider">OR</div>
                 <div className="flex justify-center">
-                    <div className="bg-black py-3 px-3 rounded-[50%] cursor-pointer"><BsGoogle onClick={()=> handleSocial(provider)} className="text-2xl text-white"></BsGoogle></div>
+                    <div className="bg-black py-3 px-3 rounded-[50%] cursor-pointer"><BsGoogle onClick={() => handleSocial(provider)} className="text-2xl text-white"></BsGoogle></div>
                 </div>
             </div>
         </div>

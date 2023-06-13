@@ -18,7 +18,6 @@ const Home = () => {
             </Player>
         </div>
     }
-    console.log(user);
     return (
         <div>
             <Carousel></Carousel>
