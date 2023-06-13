@@ -11,7 +11,7 @@ const Navbar = () => {
         {user ? <li><Link className="text-sm uppercase font-medium" to='/dashboard'>Dashboard</Link></li> : ''}
     </>
     return (
-        <>
+        <div className="fixed bg-white w-full z-50">
             <Container>
                 <nav className="navbar justify-between">
                     <div className="navbar-start gap-3">
@@ -44,7 +44,7 @@ const Navbar = () => {
                     </div>
                 </nav>
             </Container>
-        </>
+        </div>
     );
 };
 

@@ -4,9 +4,10 @@ import Carousel from "../Carousel/Carousel";
 import Instructors from "../Instructors/Instructors";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import OurCampus from "../OurCampus/OurCampus";
+import { Fade } from "react-awesome-reveal";
 
 const Home = () => {
-    const {user,loader} = useAuth();
+    const { user, loader } = useAuth();
     if (loader) {
         return <div className="h-[100vh] flex justify-center items-center">
             <Player
@@ -21,9 +22,15 @@ const Home = () => {
     return (
         <div>
             <Carousel></Carousel>
-            <PopularClasses></PopularClasses>
-            <Instructors></Instructors>
-            <OurCampus></OurCampus>
+            <Fade damping>
+                <PopularClasses></PopularClasses>
+            </Fade>
+            <Fade damping>
+                <Instructors></Instructors>
+            </Fade>
+            <Fade damping>
+                <OurCampus></OurCampus>
+            </Fade>
         </div>
     );
 };
